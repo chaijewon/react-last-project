@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import {Fragment} from "react";
+import {BrowserRouter as Router,Route,Routes} from "react-router-dom";
+import Header from "./components/main/Header";
+import Footer from "./components/main/Footer";
+import Home from "./components/main/Home";
+import FoodList from "./components/food/FoodList";
+import EventList from "./components/food/EventList";
+import FoodDetail from "./components/food/FoodDetail";
 
+// <Route path={"/jeju/food_detail/:no"} element={<FoodDetail/>}/> => PathVariable
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+     <Router>
+       <Fragment>
+         <Header/>
+         <Routes>
+             <Route exact path={"/"} element={<Home/>}/>
+             <Route path={"/jeju/food_list"} element={<FoodList/>}/>
+             <Route path={"/jeju/event_list"} element={<EventList/>}/>
+             <Route path={"/jeju/food_detail/:no"} element={<FoodDetail/>}/>
+         </Routes>
+         <Footer/>
+       </Fragment>
+     </Router>
   );
 }
 
