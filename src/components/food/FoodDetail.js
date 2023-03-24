@@ -60,10 +60,21 @@ function FoodDetail(props)
              });
          }
      })
-    let menu=foodDetail.menu.split("^")
-    let h=menu.map(m=>
-      <li>{m}</li>
-    )
+    let mm=String(foodDetail.menu)
+    let aa=mm.indexOf("^");
+    let h='';
+    if(aa>=0)
+    {
+        let menu=foodDetail.menu.split("^")
+          h=menu.map(m=>
+            <li>{m}</li>
+        )
+    }
+    else
+    {
+        h='등록없음'
+    }
+
      /*
         TITLE      VARCHAR2(200)
         URL        VARCHAR2(1000)

@@ -6,6 +6,7 @@ import Home from "./components/main/Home";
 import FoodList from "./components/food/FoodList";
 import EventList from "./components/food/EventList";
 import FoodDetail from "./components/food/FoodDetail";
+import FoodFind from "./components/food/FoodFind";
 
 // <Route path={"/jeju/food_detail/:no"} element={<FoodDetail/>}/> => PathVariable
 function App() {
@@ -18,6 +19,7 @@ function App() {
              <Route path={"/jeju/food_list"} element={<FoodList/>}/>
              <Route path={"/jeju/event_list"} element={<EventList/>}/>
              <Route path={"/jeju/food_detail/:no"} element={<FoodDetail/>}/>
+             <Route path={"/jeju/food_find"} element={<FoodFind/>}/>
          </Routes>
          <Footer/>
        </Fragment>
