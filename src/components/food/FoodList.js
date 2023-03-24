@@ -7,6 +7,7 @@ function FoodList(){
     const [totalpage,setTotalpage]=useState(0)
     const [startPage,setStartPage]=useState(0)
     const [endPage,setEndPage]=useState(0)
+    const [cookList,setCookList]=useState([])
     useEffect(()=>{
         axios.get("http://localhost/jeju/food_list_react",{
             params:{
@@ -15,6 +16,11 @@ function FoodList(){
         }).then(response=>{
              console.log(response.data)
              setFoodList(response.data)
+        })
+
+        axios.get("http://localhost/jeju/jeju_cookie_react").then(response=>{
+            console.log(response.data)
+            setCookList(response.data)
         })
     },[])
     useEffect(()=>{
@@ -29,6 +35,7 @@ function FoodList(){
             setStartPage(response.data.startPage)
             setEndPage(response.data.endPage)
         })
+
     },{})
     // 이벤트 처리
     const pages=(page)=>{
@@ -68,6 +75,13 @@ function FoodList(){
         <li className={index%4==0?'one_quarter first':'one_quarter'}>
             <NavLink to={"/jeju/food_detail/"+food.no}>
               <img src={food.poster} title={food.title}/>
+            </NavLink>
+        </li>
+    )
+    let html2=cookList.map((food,index)=>
+        <li className={index%4==0?'one_quarter first':'one_quarter'}>
+            <NavLink to={"/jeju/food_detail/"+food.no}>
+                <img src={food.poster} title={food.title}/>
             </NavLink>
         </li>
     )
@@ -114,7 +128,18 @@ function FoodList(){
                     </nav>
 
                 </div>
+                <div className="content">
 
+                    <div id="gallery">
+                        <figure>
+                            <header className="heading">최근 방문 맛집</header>
+                            <ul className="nospace clear">
+                                {html2}
+                            </ul>
+
+                        </figure>
+                    </div>
+                </div>
                 <div className="clear"></div>
             </main>
         </div>

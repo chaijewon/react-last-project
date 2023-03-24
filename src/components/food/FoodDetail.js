@@ -7,10 +7,11 @@ function FoodDetail(props)
      let {no}=useParams();
      const [foodDetail,setFoodDetail]=useState({})
     useEffect(()=>{
-        axios.get("http://localhost/jeju/food_detail_react",{
-            params:{
-                no:no
+        axios.get("http://localhost/jeju/food_detail_react", {
+            params: {
+                no: no
             }
+
         }).then(response=>{
             console.log(response.data)
             setFoodDetail(response.data)
