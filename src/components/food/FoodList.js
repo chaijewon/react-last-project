@@ -1,4 +1,5 @@
 import {useState,useEffect} from "react";
+import {useCookies} from "react-cookie";
 import axios from "axios";
 import {NavLink} from "react-router-dom";
 function FoodList(){
@@ -8,6 +9,26 @@ function FoodList(){
     const [startPage,setStartPage]=useState(0)
     const [endPage,setEndPage]=useState(0)
     const [cookList,setCookList]=useState([])
+
+    let cookie=document.cookie.split(";");
+    let cc=[]
+    for(let i=0;i<cookie.length;i++)
+    {
+
+        let a=cookie[i];
+        //alert(a);
+        //if(a.startsWith("jeju"))
+        //{
+            let b=a.substring(a.indexOf("=")+1)
+            cc.push(b.trim())
+        //}
+
+    }
+    let m=cc.map((mm,index)=>
+        <li className={index%4==0?'one_quarter first':'one_quarter'}>
+                <img src={mm}/>
+        </li>
+    )
     useEffect(()=>{
         axios.get("http://localhost/jeju/food_list_react",{
             params:{
@@ -134,7 +155,7 @@ function FoodList(){
                         <figure>
                             <header className="heading">최근 방문 맛집</header>
                             <ul className="nospace clear">
-                                {html2}
+                                {m}
                             </ul>
 
                         </figure>

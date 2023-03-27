@@ -5,6 +5,7 @@ import axios from "axios";
 function FoodDetail(props)
 {
      let {no}=useParams();
+
      const [foodDetail,setFoodDetail]=useState({})
     useEffect(()=>{
         axios.get("http://localhost/jeju/food_detail_react", {
@@ -17,6 +18,8 @@ function FoodDetail(props)
             setFoodDetail(response.data)
         })
     },{})
+     // jeju1=.jpg;jeju2=.png
+     document.cookie="jeju"+parseInt(no)+"="+foodDetail.poster;
      useEffect(()=>{
          const script=document.createElement("script")
                      script.async=true
